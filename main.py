@@ -2,6 +2,7 @@ import discord
 import random
 import requests
 import json
+import functions
 
 import os
 from dotenv import load_dotenv
@@ -14,12 +15,6 @@ client = discord.Client()
 
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
-
-def get_quote():
-    response = requests.get('https://zenquotes.io/api/random')
-    json_data = json.loads(response.text)
-    quote = '\"\"' + json_data[0]['q'] + '\" \n\t-' + json_data[0]['a'] + '\" \n\t\t-' + 'Jimmy'
-    return(quote)
 
 @client.event
 async def on_ready():
@@ -42,7 +37,11 @@ async def on_message(message):
         await user_message.send(random.choice(dogs))
 
     if user_message.startswith('!quote') or user_message.startswith('!q'):
-        quote = get_quote()
+        quote = functions.get_quote()
         await message.channel.send(quote)
+
+    if user_message.startswith('!yomama'):
+        joke = functions.yo_mama()
+        await message.channel.send(joke)
 
 client.run(TOKEN)
