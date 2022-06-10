@@ -2,7 +2,7 @@ import discord
 import random
 import requests
 import json
-import functions
+import functions    # Separate py doc with functions
 
 import os
 from dotenv import load_dotenv
@@ -30,11 +30,12 @@ async def on_message(message):
     channel = str(message.channel.name)
     print(f'{username}: {user_message} ({channel})')
 
-    if user_message.startswith('!hello'):
-        await user_message.send('Hello!')
+    if user_message.startswith('!help'):
+        help = functions.help()
+        await message.channel.send(help)
 
     if user_message.startswith('!pic'):
-        await user_message.send(random.choice(dogs))
+        await message.channel.send(random.choice(dogs))
 
     if user_message.startswith('!quote') or user_message.startswith('!q'):
         quote = functions.get_quote()

@@ -4,6 +4,13 @@ import requests
 import json
 import functions
 
+def help():
+    help_list = '''```List of usable commands with the Jimmy bot:\n
+    -!q or !quote \t Generate an inspirational quote by Jimmy\n
+    -!pic         \t Returns picture of cute doggo :)\n
+    -!yomama      \t Yo mama so...\n```'''
+    return (help_list)
+
 def get_quote():
     response = requests.get('https://zenquotes.io/api/random')
     json_data = json.loads(response.text)
