@@ -7,7 +7,7 @@ import functions
 def help():
     help_list = '''```List of usable commands with the Jimmy bot:\n
     -!q or !quote \t Generate an inspirational quote by Jimmy\n
-    -!pic         \t Returns picture of cute doggo :)\n
+    -!pic         \t Returns random image through Google search. (Format: !pic "YOUR SEARCH TERM HERE")\n
     -!yomama      \t Yo mama so...\n```'''
     return (help_list)
 

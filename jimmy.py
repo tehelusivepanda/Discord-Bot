@@ -36,8 +36,14 @@ async def on_message(message):
         await message.channel.send(help)
 
     if user_message.startswith('!pic'):
-        search_param = user_message.split(" ")[1]
-        search_dict = {"q": search_param,
+        search_param = user_message.split(" ")[1:]
+        search_param_concat = ""
+
+        for x in search_param:
+            search_param_concat += x + " "
+
+        print(search_param_concat)
+        search_dict = {"q": search_param_concat,
             "tbm": "isch",
             "ijn": "0",
             "api_key": "ce8ea31a80800c7255235d8d5b2e3a87e475a463f7bd5c6800bdd06a3f23a900"
@@ -46,7 +52,6 @@ async def on_message(message):
         search = GoogleSearch(search_dict)
         results = search.get_dict()
         image_results = results["images_results"]
-        #print(image_results)
         image_ret = [x["original"] for x in image_results]
         await message.channel.send(random.choice(image_ret))
 
