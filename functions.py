@@ -4,6 +4,8 @@ import requests
 import json
 import functions
 
+from serpapi import GoogleSearch
+
 def help():
     help_list = '''```List of usable commands with the Jimmy bot:\n
     -!q or !quote \t Generate an inspirational quote by Jimmy\n
@@ -23,3 +25,16 @@ def yo_mama():
     print(json_data)
     joke = json_data['joke'] + ' :joy::joy::joy::joy_cat:'
     return(joke)
+
+def google_image_search(search_param_concat):
+        search_dict = {"q": search_param_concat,
+            "tbm": "isch",
+            "ijn": "0",
+            "api_key": "ce8ea31a80800c7255235d8d5b2e3a87e475a463f7bd5c6800bdd06a3f23a900"
+        }
+
+        search = GoogleSearch(search_dict)
+        results = search.get_dict()
+        image_results = results["images_results"]
+        image_ret = [x["original"] for x in image_results]
+        return(image_ret)
